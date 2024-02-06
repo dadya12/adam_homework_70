@@ -61,8 +61,5 @@ class ArticleView(APIView):
     def delete(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
         article = get_object_or_404(Article, pk=pk)
-        if pk:
-            article.delete()
-            return Response({'deleted_id': pk})
-        else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        article.delete()
+        return Response({'deleted_id': pk})
